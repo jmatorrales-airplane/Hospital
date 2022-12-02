@@ -10,7 +10,11 @@ namespace jmatorrales.hospital
     {
         public static void Main(string[] args)
         {
-            
+            List<string> Prueba = new List<string>() 
+            {
+                "Medicamento1",
+                "Medicamento2" // ...
+            };
         }
     }
 }
