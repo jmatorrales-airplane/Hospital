@@ -4,16 +4,23 @@ namespace jmatorrales.hospital
     class Paciente : Persona
     {
         
-        public string diagnostico { get; set; }
-        public int diasDeIngreso { get; set; }
-        public char pronostico { get; set; }
-        public List<string> medicamentos { get; set; }
-        public List<string> pruebas { get; set; }
-        public bool esPaciente { get; set; }
+        private string diagnostico { get; set; }
+        private int diasDeIngreso { get; set; }
+        private char pronostico { get; set; }
+        private List<string> medicamentos { get; set; }
+        private List<string> pruebas { get; set; }
+        private bool esPaciente { get; set; }
 
         public void altaPaciente()
         {
+            if(esPaciente)
+            {
 
+            }
+            else
+            {
+                Console.WriteLine("El nombre introducido no es paciente en el hospital");
+            }
         }
 
         public void ingreso(string nombre, string direccion, string dni, string diagnostico, int diasDeIngreso, char pronostico, string medicacion, string pruebas)
