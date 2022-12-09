@@ -45,9 +45,19 @@ namespace jmatorrales.hospital
             catch(IOException ioex) { }
         }
 
-        public void altaPaciente()
+        public void altaPaciente() 
         {
-            paciente.altaPaciente();
+            try
+            {
+                mostrar("Indica el numero de cama: ");
+                String nCama = Console.ReadLine();
+                paciente = listaHospital[nCama];
+                paciente.altaPaciente();
+                listaHospital.Remove(nCama);
+                camas.Remove(nCama);
+            }
+            catch(IOException ioex) { }
+            mostrar("Se a eliminado lla ficha del paciente \n ");
         }
 
         public void mostrarPaciente()
@@ -56,39 +66,104 @@ namespace jmatorrales.hospital
             {
                 mostrar("Indica el numero de cama: ");
                 String nCama = Console.ReadLine();
-                Paciente paciente = listaHospital[nCama];
-                mostrar(" ");
-                mostrar($"Nombre: {paciente.nombre}");
-                mostrar($"Direccion: {paciente.direccion}");
-                mostrar($"DNI: {paciente.dni}");
-                mostrar("Diagnostico: ");
-
-                for(int i = 0; i < paciente.diagnostico.Count; i++)
+                if(nCama != null)
                 {
-                    mostrar($"- {paciente.diagnostico[i]}");
+                    Paciente paciente = listaHospital[nCama];
+                    mostrar(" ");
+                    mostrar($"Nombre: {paciente.nombre}");
+                    mostrar($"Direccion: {paciente.direccion}");
+                    mostrar($"DNI: {paciente.dni}");
+                    mostrar("Diagnostico: ");
+
+                    for (int i = 0; i < paciente.diagnostico.Count; i++)
+                    {
+                        mostrar($"- {paciente.diagnostico[i]}");
+                    }
+
+                    mostrar($"Dias de ingreso: {paciente.diasDeIngreso}");
+                    mostrar($"Pronostico: {paciente.pronostico}");
+                    mostrar("Medicamentos: ");
+
+                    for (int i = 0; i < paciente.medicamentos.Count; i++)
+                    {
+                        mostrar($"- {paciente.medicamentos[i]}");
+                    }
+
+                    mostrar("Pruebas: ");
+
+                    for (int i = 0; i < paciente.pruebas.Count; i++)
+                    {
+                        mostrar($"- {paciente.pruebas[i]}");
+                    }
                 }
-
-                mostrar($"Dias de ingreso: {paciente.diasDeIngreso}");
-                mostrar($"Pronostico: {paciente.pronostico}");
-                mostrar("Medicamentos: ");
-
-                for(int i = 0; i < paciente.medicamentos.Count; i++)
+                else
                 {
-                    mostrar($"- {paciente.medicamentos[i]}");
-                }
-
-                mostrar("Pruebas: ");
-
-                for(int i = 0; i < paciente.medicamentos.Count; i++)
-                {
-                    mostrar($"- {paciente.pruebas[i]}");
+                    mostrar("Numero de cama no valido");
                 }
             }
-            catch(ArgumentException ae)
+            catch(ArgumentException ae){ mostrar(ae.Message); }
+            catch(Exception ex) { mostrar(ex.Message); }            
+        }
+
+        public void anadirDiagnostico()
+        {
+            try
             {
-
+                mostrar("Indica el numero de cama: ");
+                String nCama = Console.ReadLine();
+                if (nCama != null)
+                {
+                    paciente = listaHospital[nCama];
+                    mostrar("Nuevo diagnostico: ");
+                    string nuevoDiagnostico = Console.ReadLine();
+                    paciente.diagnostico.Add(nuevoDiagnostico);
+                }
+                else
+                {
+                    mostrar("Numero de cama no valido");
+                }
             }
-            
+            catch (ArgumentException ae) { mostrar(ae.Message); }
+        }
+
+        public void anadirMedicamento()
+        {
+            try
+            {
+                mostrar("Indica el numero de cama: ");
+                String nCama = Console.ReadLine();
+                if (nCama != null)
+                {
+                    paciente = listaHospital[nCama];
+                    string nuevoMedicamento = seleccionarMedicamento();
+                    paciente.medicamentos.Add(nuevoMedicamento);
+                }
+                else
+                {
+                    mostrar("Numero de cama no valido");
+                }
+            }
+            catch (ArgumentException aex) { mostrar(aex.Message); }
+        }
+
+        public void anadirPrueba()
+        {
+            try
+            {
+                mostrar("Indica el numero de cama: ");
+                String nCama = Console.ReadLine();
+                if (nCama != null)
+                {
+                    paciente = listaHospital[nCama];
+                    string nuevaPrueba = seleccionarPrueba();
+                    paciente.pruebas.Add(nuevaPrueba);
+                }
+                else
+                {
+                    mostrar("Numero de cama no valido");
+                }
+            }
+            catch (ArgumentException aex) { mostrar(aex.Message); }
         }
 
         public void verCamas()

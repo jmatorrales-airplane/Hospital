@@ -20,7 +20,9 @@ namespace jmatorrales.hospital
                 while(b)
                 {
                     Console.WriteLine("1. Registrar paciente \n2. Dar de alta a paciente " +
-                        "\n3. Mostrar datos paciente \n4. Ver lista de camas \n0. Salir");
+                        "\n3. Mostrar datos paciente \n4. Añadir diagnostico" +
+                        "\n5. Añadir medicamento \n6. Añadir prueba" +
+                        "\n7. Ver lista de camas \n0. Salir");
 
                     int opcion = Convert.ToInt32(Console.ReadLine());
 
@@ -34,11 +36,23 @@ namespace jmatorrales.hospital
                             hospital.altaPaciente();
                             break;
 
-                        case 3: 
+                        case 3: // mostrar datos paciente
                             hospital.mostrarPaciente();
                             break;
 
-                        case 4:// ver lista camas
+                        case 4: // añadir diagnostico
+                            hospital.anadirDiagnostico();
+                            break;
+
+                        case 5: // añadir medicamentos
+                            hospital.anadirMedicamento();
+                            break;
+
+                        case 6: // añadir pruebas
+                            hospital.anadirPrueba();
+                            break; 
+                        
+                        case 7:// ver lista camas
                             hospital.verCamas();
                             break;
 
