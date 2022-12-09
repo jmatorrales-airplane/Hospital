@@ -3,12 +3,12 @@ namespace jmatorrales.hospital
 {
     class Paciente : Persona
     {
-        
-        private List<string> diagnostico = new List<string>();
-        private int diasDeIngreso { get; set; }
-        private char pronostico { get; set; }
-        private List<string> medicamentos = new List<string>();
-        private List<string> pruebas = new List<string>();
+
+        public List<string> diagnostico = new List<string>();
+        public int diasDeIngreso { get; set; }
+        public char pronostico { get; set; }
+        public List<string> medicamentos = new List<string>();
+        public List<string> pruebas = new List<string>();
         private bool esPaciente { get; set; }
 
         public void altaPaciente()

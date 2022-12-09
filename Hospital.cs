@@ -5,7 +5,7 @@ namespace jmatorrales.hospital
     {
         private Dictionary<string, Paciente> listaHospital = new Dictionary<string, Paciente>();
         private List<string> camas = new List<string>();
-        private Paciente paciente = new Paciente();
+        private Paciente paciente;
 
         private List<string> listaMedicamentos = new List<string>()
             { "aspirina", "rinotizol", "cascahueton", "filecodeina", "surnorteina" };
@@ -15,6 +15,7 @@ namespace jmatorrales.hospital
 
         public void ingresarPaciente()
         {
+            paciente = new Paciente();
             try
             {
                 mostrar("Numero de cama a asignar:");
@@ -56,8 +57,32 @@ namespace jmatorrales.hospital
                 mostrar("Indica el numero de cama: ");
                 String nCama = Console.ReadLine();
                 Paciente paciente = listaHospital[nCama];
+                mostrar(" ");
+                mostrar($"Nombre: {paciente.nombre}");
+                mostrar($"Direccion: {paciente.direccion}");
+                mostrar($"DNI: {paciente.dni}");
+                mostrar("Diagnostico: ");
 
-                mostrar(paciente.nombre);
+                for(int i = 0; i < paciente.diagnostico.Count; i++)
+                {
+                    mostrar($"- {paciente.diagnostico[i]}");
+                }
+
+                mostrar($"Dias de ingreso: {paciente.diasDeIngreso}");
+                mostrar($"Pronostico: {paciente.pronostico}");
+                mostrar("Medicamentos: ");
+
+                for(int i = 0; i < paciente.medicamentos.Count; i++)
+                {
+                    mostrar($"- {paciente.medicamentos[i]}");
+                }
+
+                mostrar("Pruebas: ");
+
+                for(int i = 0; i < paciente.medicamentos.Count; i++)
+                {
+                    mostrar($"- {paciente.pruebas[i]}");
+                }
             }
             catch(ArgumentException ae)
             {
