@@ -3,6 +3,7 @@ namespace jmatorrales.hospital
 {
     class Hospital
     {
+        private Dictionary<string, Paciente> listaHospital = new Dictionary<string, Paciente>();
         private List<string> camas = new List<string>();
         private Paciente paciente = new Paciente();
 
@@ -37,6 +38,8 @@ namespace jmatorrales.hospital
 
                 camas.Add(idCama);
                 paciente.ingreso(nombre, direccion, dni, diagnostico, diasDeIngreso, pronostico, medicacion, pruebas);
+
+                listaHospital.Add(idCama, paciente);
             }
             catch(IOException ioex) { }
         }
@@ -44,6 +47,23 @@ namespace jmatorrales.hospital
         public void altaPaciente()
         {
             paciente.altaPaciente();
+        }
+
+        public void mostrarPaciente()
+        {
+            try
+            {
+                mostrar("Indica el numero de cama: ");
+                String nCama = Console.ReadLine();
+                Paciente paciente = listaHospital[nCama];
+
+                mostrar(paciente.nombre);
+            }
+            catch(ArgumentException ae)
+            {
+
+            }
+            
         }
 
         public void verCamas()
